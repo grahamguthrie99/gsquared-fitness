@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { TextForm } from "../components/TextForm"
+import { DefaultForm } from "../components/DefaultForm"
 import { AuthContext } from "../session/AuthContext"
 import { Loader } from "../components/Loader"
 
@@ -11,13 +11,15 @@ export const LoginForm = ({ props }) => {
             name: 'email',
             value: '',
             placeholder: 'Email Address',
-            type: 'email'
+            type: 'email',
+            free: true
         },
         {
             name: 'password',
             value: '',
             placeholder: 'Password',
-            type: 'password'
+            type: 'password',
+            free: true
         }
     ]
 
@@ -72,7 +74,7 @@ export const LoginForm = ({ props }) => {
 
     return (
 
-        loading ? <Loader /> : <TextForm
+        loading ? <Loader /> : <DefaultForm
             onChange={onChange}
             onSubmit={onSubmit}
             values={values}

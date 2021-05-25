@@ -49,7 +49,7 @@ const ErrorList = styled.ul`
 
 `
 
-export const TextForm = ({ onChange, onSubmit, values, formHeading, buttonText, errors }) => {
+export const DefaultForm = ({ onChange, onSubmit, values, formHeading, buttonText, errors }) => {
     return (
         <>
 
@@ -57,18 +57,29 @@ export const TextForm = ({ onChange, onSubmit, values, formHeading, buttonText, 
                 <FormHeader>{formHeading}</FormHeader>
                 {
                     values.map((input, index) =>
-                        <FormInput
+                        input.free ? <FormInput
                             key={index}
                             name={input.name}
                             value={input.value}
                             onChange={onChange}
                             type={input.type}
                             placeholder={input.placeholder}
-                        />
-
-
-                    )
-                }
+                        /> :
+                            <select
+                                name={input.name}
+                                onChange={onChange}
+                                value={input.value}
+                                key={index}
+                            >
+                                {input.options.map((input, index) =>
+                                    <option
+                                        value={input}
+                                        key={index}>
+                                        {input}
+                                    </option>
+                                )}
+                            </select>
+                    )}
                 <PrimaryButton type="submit">
                     {buttonText}
                 </PrimaryButton>

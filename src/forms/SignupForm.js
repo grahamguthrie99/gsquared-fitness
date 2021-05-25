@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { TextForm } from "../components/TextForm"
+import { DefaultForm } from "../components/DefaultForm"
 import { AuthContext } from "../session/AuthContext"
 import { Loader } from '../components/Loader';
 
@@ -10,19 +10,22 @@ export const SignupForm = ({ props }) => {
             name: 'email',
             value: '',
             placeholder: 'Email Address',
-            type: 'email'
+            type: 'email',
+            free: true
         },
         {
             name: 'password1',
             value: '',
             placeholder: 'Password',
-            type: 'password'
+            type: 'password',
+            free: true
         },
         {
             name: 'password2',
             value: '',
             placeholder: 'Re-type Password',
-            type: 'password'
+            type: 'password',
+            free: true
         }
 
     ]
@@ -79,7 +82,7 @@ export const SignupForm = ({ props }) => {
 
     return (
 
-        loading ? <Loader /> : <TextForm
+        loading ? <Loader /> : <DefaultForm
             onChange={onChange}
             onSubmit={onSubmit}
             values={values}
