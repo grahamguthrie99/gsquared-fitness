@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { primaryTheme, headingFont, typeScale } from "../utils"
 import { PrimaryButton } from "./Buttons"
+import { ErrorList } from "./ErrorList"
 
 const FormHeader = styled.h3`
     font-family: ${headingFont};
@@ -41,13 +42,7 @@ const FormInput = styled.input`
   }
 `
 
-const ErrorList = styled.ul`
-    list-style-type: none;
-    display: block;
-    padding-left: 0;
 
-
-`
 
 export const DefaultForm = ({ onChange, onSubmit, values, formHeading, buttonText, errors }) => {
     return (
@@ -83,20 +78,9 @@ export const DefaultForm = ({ onChange, onSubmit, values, formHeading, buttonTex
                 <PrimaryButton type="submit">
                     {buttonText}
                 </PrimaryButton>
-                <ErrorList>
-                    {errors.onSave && <li>{errors.onSave}</li>}
-                    {errors.email && <li>{errors.email}</li>}
-                    {errors.password && <li>{errors.password}</li>}
-                    {errors.password1 && <li>{errors.password1}</li>}
-                    {errors.password2 && <li>{errors.password2}</li>}
-                    {errors.passwordMatch && <li>{errors.passwordMatch}</li>}
-                    {errors.weight && <li>{errors.weight}</li>}
-                    {errors.exercise && <li>{errors.exercise}</li>}
-                    {errors.sets && <li>{errors.sets}</li>}
-                    {errors.reps && <li>{errors.reps}</li>}
-                    {errors.time && <li>{errors.time}</li>}
-                    {errors.distance && <li>{errors.distance}</li>}
-                </ErrorList>
+                <ErrorList
+                    errors={errors}
+                />
             </FormWrapper>
         </>
 

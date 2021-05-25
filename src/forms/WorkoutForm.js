@@ -30,7 +30,6 @@ export const WorkoutForm = ({ setSelection, uid }) => {
         }
     ]
 
-
     const [errors, setErrors] = useState({})
     const [values, setValues] = useState(defaultState)
 
@@ -73,7 +72,6 @@ export const WorkoutForm = ({ setSelection, uid }) => {
             setErrors(errors)
         }
     }
-
 
     function formIsValid() {
         const exercise = values[0].value;
