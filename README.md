@@ -1,4 +1,4 @@
-![Title Image](./ReadMe.png)
+![Title Image](./src/assets/images/ReadMe.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
