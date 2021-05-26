@@ -17,7 +17,6 @@ function App() {
                 <Route exact path="/" component={Landing} />
                 <AuthenticatedRoute exact path="/dashboard" component={Dashboard} />
             </Switch>
-
             <ToastContainer
                 position="top-right"
                 autoClose={5000}

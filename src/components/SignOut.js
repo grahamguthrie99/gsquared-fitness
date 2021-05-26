@@ -5,7 +5,6 @@ import { SecondaryButton } from "./Buttons"
 
 const SignOut = () => {
     const firebase = useContext(FirebaseContext)
-
     return (
         <SecondaryButton onClick={() => {
             firebase.signOut()
@@ -15,5 +14,4 @@ const SignOut = () => {
         </SecondaryButton>
     )
 }
-
 export default SignOut;

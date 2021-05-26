@@ -4,7 +4,7 @@ export const workoutDefaultState = [
         name: 'exercise',
         value: 'Select',
         label: 'Select Exercise',
-        options: ['Squat', 'Bench', 'Overhead Press', 'Bent Over Row', 'Deadlift'],
+        options: ['Select', 'Squat', 'Bench', 'Overhead Press', 'Bent Over Row', 'Deadlift'],
     },
     {
         componentType: 'input',
@@ -18,7 +18,24 @@ export const workoutDefaultState = [
         name: 'reps',
         value: 'Select',
         label: 'Select Reps',
-        options: [1, 3, 5, 10]
+        options: ['Select', 1, 3, 5, 10]
+    }
+]
+
+export const workoutHistoryDefaultState = [
+    {
+        componentType: 'select',
+        name: 'exercise',
+        value: 'Select',
+        label: 'Select Exercise',
+        options: ['Select', 'Squat', 'Bench', 'Overhead Press', 'Bent Over Row', 'Deadlift'],
+    },
+    {
+        componentType: 'select',
+        name: 'reps',
+        value: 'Select',
+        label: 'Select Reps',
+        options: ['Select', 1, 3, 5, 10]
     }
 ]
 

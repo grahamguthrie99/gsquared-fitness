@@ -42,7 +42,9 @@ export const WorkoutForm = ({ setSelection, uid }) => {
         const errors = {};
         if (!weight) errors.weight = "Weight is required.";
         if (!exercise) errors.exercise = "Exercise is required.";
+        if (exercise === 'Select') errors.exercise = "Please select an exercise.";
         if (!reps) errors.reps = "Rep number is required.";
+        if (reps === 'Select') errors.reps = "Please select an amount of reps.";
         setErrors(errors);
         return Object.keys(errors).length === 0;
     }
