@@ -41,7 +41,7 @@ export const FormComponent = ({ componentType, input, onChange }) => {
 
 }
 
-export const FormInput = ({ onChange, input }) => {
+const FormInput = ({ onChange, input }) => {
     return <InputWrapper
         name={input.name}
         value={input.value}
@@ -51,7 +51,7 @@ export const FormInput = ({ onChange, input }) => {
     />
 }
 
-export const FormSelect = ({ onChange, input, index }) => {
+const FormSelect = ({ onChange, input, index }) => {
     return <SelectWrapper
         name={input.name}
         onChange={onChange}

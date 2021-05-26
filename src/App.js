@@ -1,30 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components'
 import { primaryTheme } from "./utils";
 import Landing from "./pages/Landing";
 import { Header } from "./components/Header";
-import { Menu } from "./components/Menu"
 import AuthenticatedRoute from './session/AuthenticatedRoute';
-import ActivityLog from "./pages/ActivityLog"
 import Dashboard from "./pages/Dashboard"
 import { ToastContainer } from '../node_modules/react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-    const [display, displayMenu] = useState(false);
-
     return (
         <ThemeProvider theme={primaryTheme}>
-            <Header
-                displayMenu={displayMenu}
-                display={display}
-            />
-            {display && <Menu displayMenu={displayMenu} />}
-
+            <Header />
             <Switch>
                 <Route exact path="/" component={Landing} />
-                <AuthenticatedRoute exact path="/activitylog" component={ActivityLog} />
                 <AuthenticatedRoute exact path="/dashboard" component={Dashboard} />
             </Switch>
 
@@ -37,6 +27,7 @@ function App() {
                 rtl={false}
                 pauseOnFocusLoss
                 draggable />
+
         </ThemeProvider>
     );
 }

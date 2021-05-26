@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { primary, typeScale, headingFont } from "../utils"
-import { TertiaryButton } from './Buttons';
+import SignOut from './SignOut';
 import { AuthContext } from '../session/AuthContext';
+
 
 const HeaderWrapper = styled.div`
     position: fixed;
@@ -24,12 +25,12 @@ const HeaderContent = styled.h5`
     border-bottom: 1px solid ${primary[100]};
 `
 
-export const Header = ({ displayMenu, display }) => {
+export const Header = () => {
     const { authState } = useContext(AuthContext)
     return (
         <HeaderWrapper>
             <HeaderContent>G^2 Fitness</HeaderContent>
-            {authState.user && <TertiaryButton onClick={() => displayMenu(!display)}> Menu </TertiaryButton>}
+            {authState.user && <SignOut />}
         </HeaderWrapper>
     )
 }
