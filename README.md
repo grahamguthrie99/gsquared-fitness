@@ -1,5 +1,30 @@
 ![Title Image](./src/assets/images/ReadMe.png)
 
+# GSquared Fitness
+Copy and paste this template into any project for boilerplate documentation. 
+
+## So you want to... 
+
+## Table of Contents 
+* [Installation](#Installation)
+* [Usage](#Usage)
+* [Testing](#Testing)
+* [Contributing](#Contributing)
+* [Sources](#Source)
+* [Liscense](#Liscense)
+
+## Installation 
+
+## Usage 
+
+## Testing 
+
+## Contributing
+
+## Sources
+
+## Liscense 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
