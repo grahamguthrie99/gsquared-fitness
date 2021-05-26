@@ -1,53 +1,15 @@
 import React, { useState, useContext } from 'react';
-import { DefaultForm } from "../components/DefaultForm"
+import { FormFactory } from "../components/form/FormFactory"
+import { workoutDefaultState } from "./DefaultStates"
 import { toast } from 'react-toastify';
 import { FirebaseContext } from '../config/Firebase/FirebaseContext';
 
 export const WorkoutForm = ({ setSelection, uid }) => {
     const firebase = useContext(FirebaseContext)
-    const defaultState = [
-        {
-            name: 'exercise',
-            value: 'Select',
-            label: 'Select Exercise',
-            options: ['Squat', 'Bench', 'Overhead Press', 'Bent Over Row', 'Deadlift'],
-            free: false,
-
-        },
-        {
-            name: 'weight',
-            value: '',
-            placeholder: 'Weight Used (lbs)',
-            type: 'number',
-            free: true
-        },
-        {
-            name: 'reps',
-            value: 'Select',
-            label: 'Select Reps',
-            options: [1, 3, 5, 10],
-            free: false
-        }
-    ]
-
     const [errors, setErrors] = useState({})
-    const [values, setValues] = useState(defaultState)
-
-    function onChange(event) {
-        const { value } = event.target;
-        const changeIndex = values.findIndex(({ name }) => name === event.target.name)
-        const changedObject = { ...values[changeIndex], value: value }
-        setValues(preValues => (
-            [...preValues.slice(0, changeIndex),
-                changedObject,
-            ...preValues.slice(changeIndex + 1)
-            ]
-        ));
-
-    }
+    const [values, setValues] = useState(workoutDefaultState)
 
     async function onSubmit(event) {
-
         event.preventDefault();
         if (!formIsValid()) return;
 
@@ -57,7 +19,7 @@ export const WorkoutForm = ({ setSelection, uid }) => {
         workout.reps = values[2].value;
         const timestamp = JSON.stringify(Date.now())
         try {
-            setValues(defaultState)
+            setValues(workoutDefaultState)
             await firebase.db.ref('/maxes/' + uid).push({
                 workout,
                 timestamp
@@ -92,10 +54,10 @@ export const WorkoutForm = ({ setSelection, uid }) => {
             alignItems: 'center',
             justifyContent: 'center',
         }}>
-            <DefaultForm
-                onChange={onChange}
+            <FormFactory
                 onSubmit={onSubmit}
                 values={values}
+                setValues={setValues}
                 errors={errors}
                 formHeading='Add Workout'
                 buttonText='Submit Workout'

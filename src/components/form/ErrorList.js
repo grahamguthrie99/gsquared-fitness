@@ -16,6 +16,5 @@ export const ErrorList = ({ errors }) => {
                 </li>
             ))}
         </ ErrorContainer>
-
     )
 }
