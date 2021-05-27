@@ -51,7 +51,7 @@ const FormInput = ({ onChange, input }) => {
     />
 }
 
-const FormSelect = ({ onChange, input, index }) => {
+const FormSelect = ({ onChange, input }) => {
     return <SelectWrapper
         name={input.name}
         onChange={onChange}

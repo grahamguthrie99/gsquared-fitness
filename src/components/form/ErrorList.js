@@ -10,7 +10,7 @@ const ErrorContainer = styled.ul`
 export const ErrorList = ({ errors }) => {
     return (
         <ErrorContainer>
-            {Object.keys(errors).map((keyName, i) => (
+            {errors && Object.keys(errors).map((keyName, i) => (
                 <li key={i}>
                     {errors[keyName]}
                 </li>
