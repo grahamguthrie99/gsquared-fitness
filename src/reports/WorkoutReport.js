@@ -1,17 +1,19 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { FirebaseContext } from '../config/Firebase/FirebaseContext';
 import { Loader } from '../components/Loader';
-import { WorkoutTable } from '../components/WorkoutTable';
+import { WorkoutHistoryForm } from '../forms/WorkoutHistoryForm';
+import WorkoutDisplayList from './WorkoutDisplayList';
 
 
 const WorkoutReport = ({ uid }) => {
     const firebase = useContext(FirebaseContext)
     const [workouts, setWorkouts] = useState({})
+    const [filterAttributes, setFilterAttributes] = useState({})
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (uid)
-            firebase.db.ref("/workouts/" + uid)
+            firebase.db.ref("/maxes/" + uid)
                 .on("value", function (snapshot) {
                     setWorkouts(snapshot.val())
                     setLoading(false)
@@ -19,22 +21,23 @@ const WorkoutReport = ({ uid }) => {
 
     }, [firebase, uid])
 
-    console.log(workouts)
+    let displayList = Object.keys(workouts).reduce((obj, key) => obj.concat(workouts[key].workout), [])
+    if (!(Object.keys(filterAttributes).length === 0 && filterAttributes.constructor === Object)) {
+        const { exercise, reps } = filterAttributes
+        displayList = displayList.filter(workout => workout.exercise === exercise && workout.reps === reps)
+    }
     return (
-        loading ? <Loader /> : <ul>{
-            workouts ?
-                Object.keys(workouts).map(function (key, index) {
-                    const timestamp = new Date(JSON.parse(workouts[key].timestamp)).toLocaleDateString("en-US")
-                    return (
-                        <li key={index}>
-                            {timestamp}
-                            <WorkoutTable
-                                tableContent={workouts[key].exerciseList} />
-                        </li>
-                    )
-                }) :
-                <li>You have not logged any workouts.</li>
-        }</ul>
+        loading ?
+            <Loader /> :
+            <>
+                <WorkoutHistoryForm
+                    setFilterAttributes={setFilterAttributes}
+                />
+                <WorkoutDisplayList
+                    filterAttributes={filterAttributes}
+                    displayList={displayList}
+                />
+            </>
     );
 }
 

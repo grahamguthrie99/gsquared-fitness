@@ -1,49 +1,16 @@
 import React, { useState, useContext } from 'react';
-import { TextForm } from "../components/TextForm"
+import { FormFactory } from "../components/form/FormFactory"
+import { signupDefaultState } from "./DefaultStates"
 import { AuthContext } from "../session/AuthContext"
 import { Loader } from '../components/Loader';
 
 
 export const SignupForm = ({ props }) => {
-    const defualtState = [
-        {
-            name: 'email',
-            value: '',
-            placeholder: 'Email Address',
-            type: 'email'
-        },
-        {
-            name: 'password1',
-            value: '',
-            placeholder: 'Password',
-            type: 'password'
-        },
-        {
-            name: 'password2',
-            value: '',
-            placeholder: 'Re-type Password',
-            type: 'password'
-        }
 
-    ]
     const { authState, actions } = useContext(AuthContext)
     const [errors, setErrors] = useState({})
-    const [values, setValues] = useState(defualtState)
+    const [values, setValues] = useState(signupDefaultState)
     const { loading } = authState
-
-    function onChange(event) {
-        const { value } = event.target;
-        const changeIndex = values.findIndex(({ name }) => name === event.target.name)
-        const changedObject = { ...values[changeIndex], value: value }
-
-        setValues(preValues => (
-            [...preValues.slice(0, changeIndex),
-                changedObject,
-            ...preValues.slice(changeIndex + 1)
-            ]
-        ));
-
-    }
 
     async function onSubmit(event) {
         const email = values[0].value;
@@ -79,13 +46,14 @@ export const SignupForm = ({ props }) => {
 
     return (
 
-        loading ? <Loader /> : <TextForm
-            onChange={onChange}
+        loading ? <Loader /> : <FormFactory
             onSubmit={onSubmit}
             values={values}
+            setValues={setValues}
             errors={errors}
             formHeading='Sign Up'
-            buttonText='Sign Up' />
+            buttonText='Sign Up'
+        />
 
     )
 }

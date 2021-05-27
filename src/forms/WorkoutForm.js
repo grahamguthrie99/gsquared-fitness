@@ -1,22 +1,27 @@
 import React, { useState, useContext } from 'react';
-import { ExerciseForm } from "./ExerciseForm"
-import { WorkoutTable, TableTitle } from "../components/WorkoutTable"
-import { PrimaryButton } from '../components/Buttons';
+import { FormFactory } from "../components/form/FormFactory"
+import { workoutDefaultState } from "./DefaultStates"
 import { toast } from 'react-toastify';
 import { FirebaseContext } from '../config/Firebase/FirebaseContext';
 
 export const WorkoutForm = ({ setSelection, uid }) => {
-
     const firebase = useContext(FirebaseContext)
-    const [exerciseList, addExercise] = useState([])
     const [errors, setErrors] = useState({})
+    const [values, setValues] = useState(workoutDefaultState)
 
-    async function onSubmit() {
+    async function onSubmit(event) {
+        event.preventDefault();
+        if (!formIsValid()) return;
+
+        const workout = {}
+        workout.exercise = values[0].value;
+        workout.weight = values[1].value;
+        workout.reps = values[2].value;
         const timestamp = JSON.stringify(Date.now())
-
         try {
-            await firebase.db.ref('/workouts/' + uid).push({
-                exerciseList,
+            setValues(workoutDefaultState)
+            await firebase.db.ref('/maxes/' + uid).push({
+                workout,
                 timestamp
             })
             setSelection(0)
@@ -30,6 +35,20 @@ export const WorkoutForm = ({ setSelection, uid }) => {
         }
     }
 
+    function formIsValid() {
+        const exercise = values[0].value;
+        const weight = values[1].value;
+        const reps = values[2].value;
+        const errors = {};
+        if (!weight) errors.weight = "Weight is required.";
+        if (!exercise) errors.exercise = "Exercise is required.";
+        if (exercise === 'Select') errors.exercise = "Please select an exercise.";
+        if (!reps) errors.reps = "Rep number is required.";
+        if (reps === 'Select') errors.reps = "Please select an amount of reps.";
+        setErrors(errors);
+        return Object.keys(errors).length === 0;
+    }
+
     return (
         <div style={{
             display: 'flex',
@@ -37,23 +56,17 @@ export const WorkoutForm = ({ setSelection, uid }) => {
             alignItems: 'center',
             justifyContent: 'center',
         }}>
-            {exerciseList.length > 0 ?
-                <>
-                    <TableTitle>Workout</TableTitle>
-                    <WorkoutTable
-                        tableContent={exerciseList} />
-                    <PrimaryButton onClick={() => onSubmit()}> Submit Workout </PrimaryButton>
-                    <br />
-                    <br />
-                </> : <p style={{ marginTop: "0px" }}>Add an exercise below.</p>
-            }
-            <ExerciseForm
-                exerciseList={exerciseList}
-                addExercise={addExercise}
+            <FormFactory
+                onSubmit={onSubmit}
+                values={values}
+                setValues={setValues}
+                errors={errors}
+                formHeading='Add Workout'
+                buttonText='Submit Workout'
             />
-
-
         </div>
-
     )
 }
+
+
+

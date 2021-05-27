@@ -1,44 +1,16 @@
 import React, { useState, useContext } from 'react';
-import { TextForm } from "../components/TextForm"
+import { FormFactory } from "../components/form/FormFactory"
+import { loginDefaultState } from "./DefaultStates"
 import { AuthContext } from "../session/AuthContext"
 import { Loader } from "../components/Loader"
 
 
 export const LoginForm = ({ props }) => {
 
-    const defualtState = [
-        {
-            name: 'email',
-            value: '',
-            placeholder: 'Email Address',
-            type: 'email'
-        },
-        {
-            name: 'password',
-            value: '',
-            placeholder: 'Password',
-            type: 'password'
-        }
-    ]
-
     const { authState, actions } = useContext(AuthContext)
     const [errors, setErrors] = useState({})
-    const [values, setValues] = useState(defualtState)
+    const [values, setValues] = useState(loginDefaultState)
     const { loading } = authState
-
-    function onChange(event) {
-        const { value } = event.target;
-        const changeIndex = values.findIndex(({ name }) => name === event.target.name)
-        const changedObject = { ...values[changeIndex], value: value }
-
-        setValues(preValues => (
-            [...preValues.slice(0, changeIndex),
-                changedObject,
-            ...preValues.slice(changeIndex + 1)
-            ]
-        ));
-
-    }
 
     async function onSubmit(event) {
         const email = values[0].value;
@@ -49,7 +21,6 @@ export const LoginForm = ({ props }) => {
 
         try {
             await actions.login(email, password)
-
             props.history.push("/dashboard");
         }
         catch (e) {
@@ -57,7 +28,6 @@ export const LoginForm = ({ props }) => {
             errors.onSave = e.message
             setErrors(errors)
         }
-
     }
 
     function formIsValid() {
@@ -71,14 +41,14 @@ export const LoginForm = ({ props }) => {
     }
 
     return (
-
-        loading ? <Loader /> : <TextForm
-            onChange={onChange}
+        loading ? <Loader /> : <FormFactory
             onSubmit={onSubmit}
             values={values}
+            setValues={setValues}
             errors={errors}
             formHeading='Login'
-            buttonText='Login' />
+            buttonText='Login'
+        />
 
     )
 }
