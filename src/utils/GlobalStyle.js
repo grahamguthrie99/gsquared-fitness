@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 import { primaryFont } from "./typography";
 import { primary } from "./colors";
-import { normalize } from 'polished';
+import { normalize } from "polished";
 
 export const GlobalStyle = createGlobalStyle`
     ${normalize()}
@@ -21,4 +21,4 @@ export const GlobalStyle = createGlobalStyle`
         background: linear-gradient(180deg, rgba(43,6,56,1) 0%, rgba(1,205,254,1) 100%) fixed;
     }
 
-`
+`;

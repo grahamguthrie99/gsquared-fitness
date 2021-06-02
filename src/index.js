@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { GlobalStyle } from "./utils"
+import { GlobalStyle } from "./utils";
 import { FirebaseProvider } from "./config/Firebase/FirebaseContext";
 import { AuthProvider } from "./session/AuthContext";
 
@@ -13,12 +13,11 @@ ReactDOM.render(
       <AuthProvider>
         <Router>
           <App />
-        </Router >
+        </Router>
       </AuthProvider>
     </FirebaseProvider>
     <GlobalStyle />
-  </>
-  ,
+  </>,
   document.getElementById("root")
 );
 

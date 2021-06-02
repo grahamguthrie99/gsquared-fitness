@@ -1,29 +1,31 @@
 ![Title Image](./src/assets/images/ReadMe.png)
 
 # GSquared Fitness
-Copy and paste this template into any project for boilerplate documentation. 
 
-## So you want to... 
+Copy and paste this template into any project for boilerplate documentation.
 
-## Table of Contents 
-* [Installation](#Installation)
-* [Usage](#Usage)
-* [Testing](#Testing)
-* [Contributing](#Contributing)
-* [Sources](#Source)
-* [Liscense](#Liscense)
+## So you want to...
 
-## Installation 
+## Table of Contents
 
-## Usage 
+- [Installation](#Installation)
+- [Usage](#Usage)
+- [Testing](#Testing)
+- [Contributing](#Contributing)
+- [Sources](#Source)
+- [Liscense](#Liscense)
 
-## Testing 
+## Installation
+
+## Usage
+
+## Testing
 
 ## Contributing
 
 ## Sources
 
-## Liscense 
+## Liscense
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -93,4 +95,5 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
 # ReactFirebaseLandingPageBoiler
