@@ -6,7 +6,7 @@ import { ViewSelector } from "../components/ViewSelector";
 import landing from "../assets/images/landing.svg";
 
 const Landing = (props) => {
-  const [selection, setSelection] = useState(0);
+  const [selection, setSelection] = useState(-1);
   const viewOptions = ["Log In", "Sign Up"];
   const { history } = props;
   const views = [
