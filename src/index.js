@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { GlobalStyle } from "./utils";
-import { FirebaseProvider } from "./config/Firebase/FirebaseContext";
+import { FirebaseProvider } from "./firebase/FirebaseContext";
 import { AuthProvider } from "./session/AuthContext";
 
 ReactDOM.render(

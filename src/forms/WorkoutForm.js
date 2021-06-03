@@ -3,7 +3,7 @@ import React, { useState, useContext } from "react";
 import { FormFactory } from "../components/form/FormFactory";
 import { workoutDefaultState } from "./DefaultStates";
 import { toast } from "react-toastify";
-import { FirebaseContext } from "../config/Firebase/FirebaseContext";
+import { FirebaseContext } from "../firebase/FirebaseContext";
 
 export const WorkoutForm = ({ setSelection, uid }) => {
   const firebase = useContext(FirebaseContext);

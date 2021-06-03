@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useEffect, createContext, useContext, useReducer } from "react";
-import { FirebaseContext } from "../config/Firebase/FirebaseContext";
+import { FirebaseContext } from "../firebase/FirebaseContext";
 
 import { ManageAuthReducer, initialState } from "./ManageAuthReducer";
 import { startLogin, setUser, loginFailure } from "./ManageAuthReducer";

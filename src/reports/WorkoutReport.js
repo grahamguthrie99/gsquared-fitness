@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useContext, useState, useEffect } from "react";
-import { FirebaseContext } from "../config/Firebase/FirebaseContext";
+import { FirebaseContext } from "../firebase/FirebaseContext";
 import { Loader } from "../components/Loader";
 import { WorkoutHistoryForm } from "../forms/WorkoutHistoryForm";
 import DisplayList from "../components/DisplayList";
