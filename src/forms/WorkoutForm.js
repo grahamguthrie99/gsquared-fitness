@@ -19,9 +19,10 @@ export const WorkoutForm = ({ setSelection, uid }) => {
     workout.weight = values[1].value;
     workout.reps = values[2].value;
     const timestamp = JSON.stringify(Date.now());
+
     try {
       setValues(workoutDefaultState);
-      await firebase.db.ref("/maxes/" + uid).push({
+      await firebase.db.ref("/workouts/" + uid).push({
         workout,
         timestamp,
       });

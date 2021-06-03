@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { FirebaseContext } from "../config/Firebase/FirebaseContext";
 import { Loader } from "../components/Loader";
 import { WorkoutHistoryForm } from "../forms/WorkoutHistoryForm";
-import WorkoutDisplayList from "./WorkoutDisplayList";
+import DisplayList from "../components/DisplayList";
 
 const WorkoutReport = ({ uid }) => {
   const firebase = useContext(FirebaseContext);
@@ -13,16 +13,19 @@ const WorkoutReport = ({ uid }) => {
 
   useEffect(() => {
     if (uid)
-      firebase.db.ref("/maxes/" + uid).on("value", function (snapshot) {
+      firebase.db.ref("/workouts/" + uid).on("value", function (snapshot) {
         setWorkouts(snapshot.val());
         setLoading(false);
       });
   }, [firebase, uid]);
 
-  let displayList = Object.keys(workouts).reduce(
-    (obj, key) => obj.concat(workouts[key].workout),
-    []
-  );
+  let displayList = !(workouts === null)
+    ? Object.keys(workouts).reduce(
+        (obj, key) => obj.concat(workouts[key].workout),
+        []
+      )
+    : {};
+
   if (
     !(
       Object.keys(filterAttributes).length === 0 &&
@@ -34,12 +37,13 @@ const WorkoutReport = ({ uid }) => {
       (workout) => workout.exercise === exercise && workout.reps === reps
     );
   }
+
   return loading ? (
     <Loader />
   ) : (
     <>
       <WorkoutHistoryForm setFilterAttributes={setFilterAttributes} />
-      <WorkoutDisplayList
+      <DisplayList
         filterAttributes={filterAttributes}
         displayList={displayList}
       />

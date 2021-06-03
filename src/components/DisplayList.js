@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-const WorkoutDisplayList = ({ displayList }) => {
+const DisplayList = ({ displayList }) => {
   return (
     <ul>
       {displayList.length > 0 ? (
@@ -20,11 +20,11 @@ const WorkoutDisplayList = ({ displayList }) => {
   );
 };
 
-WorkoutDisplayList.propTypes = {
+DisplayList.propTypes = {
   displayList: PropTypes.shape({
     length: PropTypes.number,
     map: PropTypes.func,
   }).isRequired,
 };
 
-export default WorkoutDisplayList;
+export default DisplayList;
