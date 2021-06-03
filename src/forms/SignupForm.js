@@ -13,13 +13,12 @@ export const SignupForm = ({ history }) => {
 
   async function onSubmit(event) {
     const email = values[0].value;
-    const password1 = values[1].value;
+    const password = values[1].value;
     event.preventDefault();
     if (!formIsValid()) return;
 
     try {
-      await actions.signUp(email, password1);
-
+      await actions.signUp(email, password);
       history.push("/activitylog");
     } catch (e) {
       console.log(e);
@@ -31,13 +30,14 @@ export const SignupForm = ({ history }) => {
 
   function formIsValid() {
     const email = values[0].value;
-    const password1 = values[1].value;
-    const password2 = values[2].value;
+    const password = values[1].value;
+    const passwordRetype = values[2].value;
     const errors = {};
     if (!email) errors.email = "Email is required.";
-    if (!password1) errors.password1 = "Password is required.";
-    if (!password2) errors.password2 = "Must retype password.";
-    if (password1 !== password2) errors.passwordMatch = "Passwords must match.";
+    if (!password) errors.password = "Password is required.";
+    if (!passwordRetype) errors.passwordRetype = "Must retype password.";
+    if (password !== passwordRetype)
+      errors.passwordMatch = "Passwords must match.";
     setErrors(errors);
     return Object.keys(errors).length === 0;
   }

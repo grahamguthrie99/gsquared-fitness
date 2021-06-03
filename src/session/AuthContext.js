@@ -25,12 +25,12 @@ export const AuthProvider = (props) => {
         throw new Error(e.message);
       }
     },
-    async signUp(email, passwordOne) {
+    async signUp(email, password) {
       dispatch(startLogin());
       try {
         const user = await firebase.auth.createUserWithEmailAndPassword(
           email,
-          passwordOne
+          password
         );
         dispatch(setUser(user.user));
       } catch (e) {
