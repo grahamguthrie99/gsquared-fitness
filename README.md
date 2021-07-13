@@ -1,4 +1,4 @@
-![Title Image](./src/assets/images/logo.png)
+![Title Image](./src/assets/images/gsquared-fitness.png)
 
 # GSquared Fitness
 
