@@ -1,4 +1,4 @@
-![Title Image](./src/assets/images/ReadMe.png)
+![Title Image](./src/assets/images/logo.png)
 
 # GSquared Fitness
 
